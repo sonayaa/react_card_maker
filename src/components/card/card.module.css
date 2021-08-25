@@ -1,0 +1,60 @@
+@value makerBlack from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value makerLightGrey from '../../common/colors.css';
+@value makerShadow from '../../common/colors.css';
+@value makerColorful from '../../common/colors.css';
+
+.preview {
+    display: flex;
+    width: 80%;
+    margin: 0 auto 10px;
+    align-items: center;
+    border: 1px solid makerLightGrey;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px 0px makerShadow;
+}
+
+.img_area {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+.img_area img {
+    width: 100%;
+}
+
+.txt_area {
+    flex: 1 1 50%;
+    text-align:left;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.company {
+    border-bottom: 1px solid wheat;
+}
+
+.bg_light {
+    color: makerBlack;
+    background-color: makerWhite;
+}
+
+.bg_dark {
+    color: makerWhite;
+    background-color: makerBlack;
+}
+
+.bg_colorful {
+    color: makerWhite;
+    background: makerColorful;
+}

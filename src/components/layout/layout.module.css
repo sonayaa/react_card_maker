@@ -1,0 +1,14 @@
+@value makerBlack from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+
+.logout_btn {
+    color: white;
+    background-color: makerBlack;
+    outline: none;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+}

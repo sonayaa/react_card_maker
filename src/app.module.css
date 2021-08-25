@@ -1,0 +1,37 @@
+@value makerGreen from './common/colors.css';
+@value makerWhite from './common/colors.css';
+@value makerGrey from './common/colors.css';
+
+header, footer {
+    padding: 10px 0;
+    background-color: makerGreen;
+    color: makerWhite;
+}
+
+li {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+td {
+    border: 1px solid makerGrey;
+}
+
+h1 {
+    display: inline-block;
+    width: 90%;
+}
+
+h2 {
+    margin-bottom: 30px;
+    color: makerGreen;
+}
+
+.container {
+    text-align: center;
+}

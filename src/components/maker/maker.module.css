@@ -1,0 +1,38 @@
+@value makerLightGrey from '../../common/colors.css';
+@value makerLightPink from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value makerGreen from '../../common/colors.css';
+
+.maker input,
+.maker select,
+.maker textarea {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.maker button {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.file_btn {
+    background-color: makerLightGrey;
+}
+
+.file_btn.exist {
+    background-color: makerLightPink;
+}
+
+.delete_btn {
+    color: makerWhite;
+    background-color: makerGreen;
+}
