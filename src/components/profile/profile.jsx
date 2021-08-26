@@ -4,11 +4,19 @@ import Maker from '../maker/maker';
 import Header from '../layout/header';
 import Footer from '../layout/footer';
 import Style from './profile.module.css';
+import { useHistory } from 'react-router-dom';
 
-const Profile = (props) => {
+const Profile = ({ authService }) => {
+    
+    const history = useHistory();
+    const onLogin = () => {
+        const userId = history.location.state.id
+        return userId;
+    }
+
     return (
         <>
-        <Header />
+        <Header onLogin={onLogin} authService={authService}/>
         <section className={Style.profile}>
             <div className={Style.left}>
                 <h2>Card Maker</h2>

@@ -1,7 +1,4 @@
-@value makerLightGrey from '../../common/colors.css';
-@value makerLightPink from '../../common/colors.css';
-@value makerWhite from '../../common/colors.css';
-@value makerGreen from '../../common/colors.css';
+@value makerLightGrey, makerLightPink, makerWhite, makerGreen from '../../common/colors.css';
 
 .maker input,
 .maker select,

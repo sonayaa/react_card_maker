@@ -1,6 +1,4 @@
-@value makerGreen from './common/colors.css';
-@value makerWhite from './common/colors.css';
-@value makerGrey from './common/colors.css';
+@value makerGreen, makerWhite, makerGrey from './common/colors.css';
 
 header, footer {
     padding: 10px 0;

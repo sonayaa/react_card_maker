@@ -1,5 +1,4 @@
-@value makerBlack from '../../common/colors.css';
-@value makerWhite from '../../common/colors.css';
+@value makerBlack, makerWhite from '../../common/colors.css';
 
 .logout_btn {
     color: white;

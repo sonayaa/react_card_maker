@@ -1,8 +1,4 @@
-@value makerBlack from '../../common/colors.css';
-@value makerWhite from '../../common/colors.css';
-@value makerLightGrey from '../../common/colors.css';
-@value makerShadow from '../../common/colors.css';
-@value makerColorful from '../../common/colors.css';
+@value makerBlack, makerWhite, makerLightGrey, makerShadow, makerColorful from '../../common/colors.css';
 
 .preview {
     display: flex;
