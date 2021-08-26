@@ -28,7 +28,7 @@ const Login = ({ authService }) => {
   return (
     <>
       <div className={Style.modal}>
-        <Header />
+        <Header authService={authService}/>
         <section className={Style.auth}>
           <h2>Login</h2>
           <button onClick={onLogin}>Google</button>
