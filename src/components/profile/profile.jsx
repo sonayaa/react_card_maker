@@ -14,8 +14,8 @@ const Profile = ({ authService }) => {
     return userId;
   };
 
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    '1': {
       id: 1,
       name: "sona1",
       company: "LG CNS",
@@ -26,7 +26,7 @@ const Profile = ({ authService }) => {
       fileName: "",
       fileURL: "",
     },
-    {
+    '2': {
       id: 2,
       name: "sona2",
       company: "메이드인헤븐",
@@ -37,7 +37,7 @@ const Profile = ({ authService }) => {
       fileName: "",
       fileURL: "",
     },
-    {
+    '3': {
       id: 3,
       name: "sona3",
       company: "성수카페",
@@ -48,16 +48,34 @@ const Profile = ({ authService }) => {
       fileName: "",
       fileURL: "",
     },
-  ]);
+  });
 
-  const onAdd = (addCard) => {
-    setCards([...cards, addCard]);
+  const addCard = (addCard) => {
+    setCards({...cards, addCard});
   };
 
-  const onDelete = (cardId) => {
-    const changeCard = cards.filter(card => card.id !== cardId)
-    setCards(changeCard);
+  const updateCard = (card) => {
+    // 방법1.
+    // const updated = {...cards}; // 업데이트 하는 시점에 이미 cards값이 변경되었을수도 있다. 동기적으로 사용 할수 없는경우. 아래와같이 콜백 방식으로 바꿀수 있다.
+    // updated[card.id] = card;
+    // setCards(updated);
+
+    // 방법2.
+    setCards(cards => { // 이전상태값의 cards를 받아온다.
+      const updated = {...cards};
+      updated[card.id] = card;
+      return updated;
+    });
   };
+
+  const deleteCard = (card) => {
+    console.log(card);
+    setCards(cards => {
+      const updated = {...cards};
+      delete updated[card.id];
+      return updated;
+    });
+  }
 
   return (
     <>
@@ -65,16 +83,16 @@ const Profile = ({ authService }) => {
       <section className={Style.profile}>
         <div className={Style.left}>
           <h2>Card Maker</h2>
-          {cards.map((card) => (
-            <Maker key={card.id} card={card} onDelete={onDelete}/>
+          {Object.keys(cards).map(key => (
+            <Maker key={key} card={cards[key]} updateCard={updateCard} deleteCard={deleteCard}/>
           ))}
-          <MakerAdd onAdd={onAdd} />
+          <MakerAdd addCard={addCard} />
         </div>
         <div className={Style.right}>
           <h2>Card Preview</h2>
           <ul>
-            {cards.map((card) => (
-              <Card key={card.id} card={card} />
+            {Object.keys(cards).map(key => (
+              <Card key={key} card={cards[key]} updateCard={updateCard} deleteCard={deleteCard}/>
             ))}
           </ul>
         </div>

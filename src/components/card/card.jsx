@@ -1,7 +1,7 @@
 import React from "react";
 import Style from "./card.module.css";
 
-const Card = ({ card }) => {
+const Card = ({ card, updateOrDelete }) => {
   const { name, company, theme, title, email, message } = card;
   return (
     <li className={`${Style.preview} ${getStyles(theme)}`}>

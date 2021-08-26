@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Style from './maker.module.css';
 
-const MakerAdd = ({ onAdd }) => {
+const MakerAdd = ({ addCard }) => {
     const formRef = useRef();
     const nameRef = useRef();
     const companyRef = useRef();
@@ -10,7 +10,7 @@ const MakerAdd = ({ onAdd }) => {
     const emailRef = useRef();
     const messageRef = useRef();
 
-    const addCard = event => {
+    const onClickAdd = event => {
         event.preventDefault();
         const card = {
             id: Date.now(),
@@ -24,7 +24,7 @@ const MakerAdd = ({ onAdd }) => {
             fileURL: '',
         }
         formRef.current.reset();
-        onAdd(card);
+        addCard(card);
     }
     return (
         <form ref={formRef}>
@@ -64,7 +64,7 @@ const MakerAdd = ({ onAdd }) => {
                             {/* <button className={`${Style.file_btn} ${Style.exist}`}>No File</button> */}
                         </td>
                         <td colSpan="2">
-                            <button className={Style.add_btn} onClick={addCard}>Add</button>
+                            <button className={Style.add_btn} onClick={onClickAdd}>Add</button>
                         </td>
                     </tr>
                 </tbody>

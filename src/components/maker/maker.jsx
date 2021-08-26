@@ -1,13 +1,24 @@
 import React from "react";
 import Style from "./maker.module.css";
 
-const Maker = ({ card, onDelete }) => {
+const Maker = ({ card, updateCard, deleteCard }) => {
   const { id, name, company, title, email, message, theme } = card;
 
-  const deleteCard = event => {
+  const onChangeCard = (event) => {
+    if (event.currentTarget == null) {
+        return;
+    }
     event.preventDefault();
-    onDelete(id);
-  }
+    updateCard({
+        ...card,
+        [event.currentTarget.name]: event.currentTarget.value, // point!
+    });
+  };
+
+  const onClickDelete = (event) => {
+    event.preventDefault();
+    deleteCard(card);
+  };
 
   return (
     <form>
@@ -15,13 +26,13 @@ const Maker = ({ card, onDelete }) => {
         <tbody>
           <tr>
             <td>
-              <input type="text" defaultValue={name} />
+              <input type="text" defaultValue={name} name="name" onChange={onChangeCard}/>
             </td>
             <td colSpan="2">
-              <input type="text" defaultValue={company} />
+              <input type="text" defaultValue={company} name="company" onChange={onChangeCard}/>
             </td>
             <td>
-              <select name="theme" defaultValue={theme}>
+              <select name="theme" defaultValue={theme} name="theme" onChange={onChangeCard}>
                 <option value="light">light</option>
                 <option value="dark">dark</option>
                 <option value="colorful">colorful</option>
@@ -30,15 +41,15 @@ const Maker = ({ card, onDelete }) => {
           </tr>
           <tr>
             <td colSpan="2">
-              <input type="text" defaultValue={title} />
+              <input type="text" defaultValue={title} name="title" onChange={onChangeCard}/>
             </td>
             <td colSpan="2">
-              <input type="text" defaultValue={email} />
+              <input type="text" defaultValue={email} name="email" onChange={onChangeCard}/>
             </td>
           </tr>
           <tr>
             <td colSpan="4">
-              <textarea defaultValue={message}></textarea>
+              <textarea defaultValue={message} name="message" onChange={onChangeCard}></textarea>
             </td>
           </tr>
           <tr>
@@ -47,7 +58,9 @@ const Maker = ({ card, onDelete }) => {
               {/* <button className={`${Style.file_btn} ${Style.exist}`}>No File</button> */}
             </td>
             <td colSpan="2">
-              <button className={Style.delete_btn} onClick={deleteCard}>Delete</button>
+              <button className={Style.delete_btn} onClick={onClickDelete}>
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
