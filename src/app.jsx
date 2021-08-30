@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/login/login";
 import Profile from "./components/profile/profile";
 
-function App({ authService }) {
+function App({ FileBtn, authService }) {
   return (
     <div className={Style.container}>
       <BrowserRouter>
@@ -12,7 +12,7 @@ function App({ authService }) {
             <Login authService={authService} />
           </Route>
           <Route path="/profile">
-            <Profile authService={authService}/>
+            <Profile authService={authService} FileBtn={FileBtn}/>
           </Route>
         </Switch>
       </BrowserRouter>

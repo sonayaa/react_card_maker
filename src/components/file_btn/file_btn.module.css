@@ -1,0 +1,36 @@
+@value makerLightGrey, makerLightPink, makerWhite, makerGreen from '../../common/colors.css';
+
+.file_default,
+.file_exist,
+.delete_btn,
+.add_btn {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.file_default {
+    background: makerLightGrey;
+}
+
+.file_exist {
+    background: makerLightPink;
+}
+
+.delete_btn {
+    color: makerWhite;
+    background: makerGreen;
+}
+
+.add_btn {
+    background: makerLightGrey;
+}
+
+.fileIpt {
+    display: none;
+}

@@ -1,12 +1,12 @@
 import React from "react";
 import Style from "./card.module.css";
 
-const Card = ({ card, updateOrDelete }) => {
-  const { name, company, theme, title, email, message } = card;
+const Card = ({ card }) => {
+  const { name, company, theme, title, email, message, fileURL } = card;
   return (
     <li className={`${Style.preview} ${getStyles(theme)}`}>
       <div className={Style.img_area}>
-        <img src="./favicon.ico" alt="" />
+        <img src={fileURL || "./favicon.ico"} alt="" />
       </div>
       <div className={Style.txt_area}>
         <p className={Style.name}>{name}</p>

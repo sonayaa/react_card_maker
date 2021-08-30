@@ -7,7 +7,7 @@ import Style from "./profile.module.css";
 import { useHistory } from "react-router-dom";
 import MakerAdd from "../maker_add/maker";
 
-const Profile = ({ authService }) => {
+const Profile = ({ FileBtn, authService }) => {
   const history = useHistory();
   const onLogin = () => {
     const userId = history.location.state.id;
@@ -15,7 +15,7 @@ const Profile = ({ authService }) => {
   };
 
   const [cards, setCards] = useState({
-    '1': {
+    1: {
       id: 1,
       name: "sona1",
       company: "LG CNS",
@@ -26,7 +26,7 @@ const Profile = ({ authService }) => {
       fileName: "",
       fileURL: "",
     },
-    '2': {
+    2: {
       id: 2,
       name: "sona2",
       company: "메이드인헤븐",
@@ -37,7 +37,7 @@ const Profile = ({ authService }) => {
       fileName: "",
       fileURL: "",
     },
-    '3': {
+    3: {
       id: 3,
       name: "sona3",
       company: "성수카페",
@@ -51,7 +51,7 @@ const Profile = ({ authService }) => {
   });
 
   const addCard = (addCard) => {
-    setCards({...cards, addCard});
+    setCards({ ...cards, addCard });
   };
 
   const updateCard = (card) => {
@@ -61,21 +61,21 @@ const Profile = ({ authService }) => {
     // setCards(updated);
 
     // 방법2.
-    setCards(cards => { // 이전상태값의 cards를 받아온다.
-      const updated = {...cards};
+    setCards((cards) => {
+      // 이전상태값의 cards를 받아온다.
+      const updated = { ...cards };
       updated[card.id] = card;
       return updated;
     });
   };
 
   const deleteCard = (card) => {
-    console.log(card);
-    setCards(cards => {
-      const updated = {...cards};
+    setCards((cards) => {
+      const updated = { ...cards };
       delete updated[card.id];
       return updated;
     });
-  }
+  };
 
   return (
     <>
@@ -83,16 +83,27 @@ const Profile = ({ authService }) => {
       <section className={Style.profile}>
         <div className={Style.left}>
           <h2>Card Maker</h2>
-          {Object.keys(cards).map(key => (
-            <Maker key={key} card={cards[key]} updateCard={updateCard} deleteCard={deleteCard}/>
+          {Object.keys(cards).map((key) => (
+            <Maker
+              key={key}
+              FileBtn={FileBtn}
+              card={cards[key]}
+              updateCard={updateCard}
+              deleteCard={deleteCard}
+              
+            />
           ))}
-          <MakerAdd addCard={addCard} />
+          <MakerAdd
+            FileBtn={FileBtn}
+            addCard={addCard}
+            updateCard={updateCard}
+          />
         </div>
         <div className={Style.right}>
           <h2>Card Preview</h2>
           <ul>
-            {Object.keys(cards).map(key => (
-              <Card key={key} card={cards[key]} updateCard={updateCard} deleteCard={deleteCard}/>
+            {Object.keys(cards).map((key) => (
+              <Card key={key} card={cards[key]} />
             ))}
           </ul>
         </div>
