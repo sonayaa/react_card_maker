@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Style from "./maker.module.css";
 
-const Maker = ({ FileBtn, card, updateCard, deleteCard }) => {
+const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
   const { id, name, company, title, email, message, theme, fileName, fileURL } =
     card;
 
@@ -10,7 +10,7 @@ const Maker = ({ FileBtn, card, updateCard, deleteCard }) => {
       return;
     }
     event.preventDefault();
-    updateCard({
+    addOrUpdateCard({
       ...card,
       [event.currentTarget.name]: event.currentTarget.value, // point!
     });
@@ -22,7 +22,7 @@ const Maker = ({ FileBtn, card, updateCard, deleteCard }) => {
   };
 
   const onFileChange = (file) => {
-    updateCard({
+    addOrUpdateCard({
       ...card,
       fileName: file.name,
       fileURL: file.url,

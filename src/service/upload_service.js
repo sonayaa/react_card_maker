@@ -11,7 +11,7 @@ class UploadService {
         formData.append("file", file);
         formData.append("upload_preset", this.upload_preset);
     
-        console.log("formData: ", formData);
+        // console.log("formData: ", formData);
         const result = await fetch(url, {
             method: "POST",
             body: formData

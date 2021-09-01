@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../card/card";
 import Maker from "../maker/maker";
 import Header from "../layout/header";
@@ -7,54 +7,32 @@ import Style from "./profile.module.css";
 import { useHistory } from "react-router-dom";
 import MakerAdd from "../maker_add/maker";
 
-const Profile = ({ FileBtn, authService }) => {
-  const history = useHistory();
+const Profile = ({ FileBtn, authService, cardRepository }) => {
+  const historyState = useHistory().location.state;
+  const [userId, setUserId] = useState(historyState && historyState.id);
+  const [cards, setCards] = useState({});
+
+  useEffect(() => {
+    if(!userId) {
+      return;
+    }
+    const stopSync = cardRepository.syncCards(userId, cards => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userId]);
+
   const onLogin = () => {
-    const userId = history.location.state.id;
+    const userId = historyState.id;
     return userId;
   };
 
-  const [cards, setCards] = useState({
-    1: {
-      id: 1,
-      name: "꼬부기",
-      company: "kakao",
-      title: "Frontend Developer",
-      email: "turtleman@daum.com",
-      message: "don't forget to code your dream",
-      theme: "light",
-      fileName: "꼬부기",
-      fileURL: "http://res.cloudinary.com/dnrdrwyas/image/upload/v1630330107/mk3pbiynob7tssoncuu5.jpg",
-    },
-    2: {
-      id: 2,
-      name: "파이리",
-      company: "naver",
-      title: "Backend Developer",
-      email: "fire123@naver.com",
-      message: "don't forget to code your dream",
-      theme: "dark",
-      fileName: "파이리",
-      fileURL: "http://res.cloudinary.com/dnrdrwyas/image/upload/v1630330157/fdbzjr3dktklvmgu7oci.jpg",
-    },
-    3: {
-      id: 3,
-      name: "피카츄",
-      company: "Coding Cafe",
-      title: "CAFE CEO",
-      email: "electro**@gmail.com",
-      message: "pi- pi-",
-      theme: "colorful",
-      fileName: "피카츄",
-      fileURL: "http://res.cloudinary.com/dnrdrwyas/image/upload/v1630330171/c5ezwzj52ajawsfseipz.png",
-    },
-  });
-
   const addCard = (addCard) => {
     setCards({ ...cards, addCard });
+    cardRepository.saveCard(userId, addCard);
   };
 
-  const updateCard = (card) => {
+  const addOrUpdateCard = (card) => {
     // 방법1.
     // const updated = {...cards}; // 업데이트 하는 시점에 이미 cards값이 변경되었을수도 있다. 동기적으로 사용 할수 없는경우. 아래와같이 콜백 방식으로 바꿀수 있다.
     // updated[card.id] = card;
@@ -67,6 +45,7 @@ const Profile = ({ FileBtn, authService }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const deleteCard = (card) => {
@@ -75,6 +54,7 @@ const Profile = ({ FileBtn, authService }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   return (
@@ -88,15 +68,14 @@ const Profile = ({ FileBtn, authService }) => {
               key={key}
               FileBtn={FileBtn}
               card={cards[key]}
-              updateCard={updateCard}
+              addOrUpdateCard={addOrUpdateCard}
               deleteCard={deleteCard}
-              
             />
           ))}
           <MakerAdd
             FileBtn={FileBtn}
             addCard={addCard}
-            updateCard={updateCard}
+            addOrUpdateCard={addOrUpdateCard}
           />
         </div>
         <div className={Style.right}>

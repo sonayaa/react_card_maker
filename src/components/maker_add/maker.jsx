@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Style from "./maker.module.css";
 
-const MakerAdd = ({ FileBtn, addCard }) => {
+const MakerAdd = ({ FileBtn, addOrUpdateCard }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -25,12 +25,11 @@ const MakerAdd = ({ FileBtn, addCard }) => {
     };
     formRef.current.reset();
     setFile({ fileName: null, fileURL: null });
-    addCard(card);
+    addOrUpdateCard(card);
   };
 
   const [file, setFile] = useState({ fileName: null, fileURL: null });
   const onFileChange = (file) => {
-    console.log("file: ", file);
     setFile({
       fileName: file.name,
       fileURL: file.url,
