@@ -1,4 +1,4 @@
-@value makerLightGrey, makerLightPink, makerWhite, makerGreen from '../../common/colors.css';
+@value makerLightGrey, makerLightPink, makerWhite, makerGreen, makerPink from '../../common/colors.css';
 
 .file_default,
 .file_exist,
@@ -34,3 +34,22 @@
 .fileIpt {
     display: none;
 }
+
+.loding {
+    width: 15px;
+    height: 15px;
+    margin: 0 auto;
+    border: 3px solid makerLightGrey;
+    border-radius: 50%;
+    border-top-color: makerPink;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}  

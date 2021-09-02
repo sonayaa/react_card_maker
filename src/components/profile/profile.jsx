@@ -27,10 +27,11 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
     return userId;
   };
 
-  const addCard = (addCard) => {
-    setCards({ ...cards, addCard });
-    cardRepository.saveCard(userId, addCard);
-  };
+  // addCard 함수를 아래 update 함수와 같이 쓸수 있음
+  // const addCard = (addCard) => {
+  //   setCards({ ...cards, addCard });
+  //   cardRepository.saveCard(userId, addCard);
+  // };
 
   const addOrUpdateCard = (card) => {
     // 방법1.
@@ -74,7 +75,6 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
           ))}
           <MakerAdd
             FileBtn={FileBtn}
-            addCard={addCard}
             addOrUpdateCard={addOrUpdateCard}
           />
         </div>

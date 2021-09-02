@@ -5,17 +5,19 @@ import Profile from "./components/profile/profile";
 
 function App({ FileBtn, authService, cardRepository }) {
   return (
-    <div className={Style.container}>
-      <BrowserRouter>
-        <Switch>
-          <Route path={["/", "/login"]} exact>
-            <Login authService={authService} />
-          </Route>
-          <Route path="/profile">
-            <Profile authService={authService} cardRepository={cardRepository} FileBtn={FileBtn}/>
-          </Route>
-        </Switch>
-      </BrowserRouter>
+    <div className={Style.app}>
+      <div className={Style.container}>
+        <BrowserRouter>
+          <Switch>
+            <Route path={["/", "/login"]} exact>
+              <Login authService={authService} />
+            </Route>
+            <Route path="/profile">
+              <Profile authService={authService} cardRepository={cardRepository} FileBtn={FileBtn}/>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
