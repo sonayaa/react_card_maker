@@ -1,4 +1,4 @@
-@value makerLightGrey, makerLightPink, makerWhite, makerGreen from '../../common/colors.css';
+@value makerWhite, makerGreen from '../../common/colors.css';
 
 .maker input,
 .maker select,
@@ -11,25 +11,15 @@
     font-size: 15px;
 }
 
-.maker button {
+.add_btn {
     width: 100%;
     border: none;
     box-sizing: border-box;
     outline: none;
     font-size: 14px;
-    padding: 5px 0;
+    padding: 6px 0;
     cursor: pointer;
-}
 
-.file_btn {
-    background-color: makerLightGrey;
-}
-
-.file_btn.exist {
-    background-color: makerLightPink;
-}
-
-.delete_btn {
     color: makerWhite;
     background-color: makerGreen;
 }

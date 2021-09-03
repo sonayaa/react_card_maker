@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { memo, useRef } from "react";
 import Style from "./maker.module.css";
 
-const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
-  const { id, name, company, title, email, message, theme, fileName, fileURL } =
-    card;
+const Maker = memo(({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
+  const nameRef = useRef();
+  const companyRef = useRef();
+  const themeRef = useRef();
+  const titleRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+
+  const { id, name, company, title, email, message, theme, fileName } = card;
+
+  const onFileChange = (file) => {
+    addOrUpdateCard({
+      ...card,
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onChangeCard = (event) => {
     if (event.currentTarget == null) {
@@ -21,14 +35,6 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
     deleteCard(card);
   };
 
-  const onFileChange = (file) => {
-    addOrUpdateCard({
-      ...card,
-      fileName: file.name,
-      fileURL: file.url,
-    });
-  };
-
   return (
     <form>
       <table className={Style.maker}>
@@ -39,6 +45,7 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
                 type="text"
                 defaultValue={name}
                 name="name"
+                ref={nameRef}
                 onChange={onChangeCard}
               />
             </td>
@@ -47,14 +54,15 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
                 type="text"
                 defaultValue={company}
                 name="company"
+                ref={companyRef}
                 onChange={onChangeCard}
               />
             </td>
             <td>
               <select
                 name="theme"
+                ref={themeRef}
                 defaultValue={theme}
-                name="theme"
                 onChange={onChangeCard}
               >
                 <option value="light">light</option>
@@ -69,6 +77,7 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
                 type="text"
                 defaultValue={title}
                 name="title"
+                ref={titleRef}
                 onChange={onChangeCard}
               />
             </td>
@@ -77,6 +86,7 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
                 type="text"
                 defaultValue={email}
                 name="email"
+                ref={emailRef}
                 onChange={onChangeCard}
               />
             </td>
@@ -86,6 +96,7 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
               <textarea
                 defaultValue={message}
                 name="message"
+                ref={messageRef}
                 onChange={onChangeCard}
               ></textarea>
             </td>
@@ -102,6 +113,6 @@ const Maker = ({ FileBtn, card, addOrUpdateCard, deleteCard }) => {
       </table>
     </form>
   );
-};
+});
 
 export default Maker;

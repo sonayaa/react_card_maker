@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Style from "./layout.module.css";
 
-const Header = ({ onLogin, authService }) => {
+const Header = memo(({ onLogin, authService }) => {
   const history = useHistory();
-  const onLogout = () => {
+  const onLogout = () => { //useCallback 
     authService.onLogout();
   };
   
@@ -26,6 +26,6 @@ const Header = ({ onLogin, authService }) => {
       )}
     </header>
   );
-};
+});
 
 export default Header;

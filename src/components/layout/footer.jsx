@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const Footer = (props) => (
+const Footer = memo(() => (
     <footer>
         <p>Code your dream</p>
     </footer>
-);
+));
 
 export default Footer;

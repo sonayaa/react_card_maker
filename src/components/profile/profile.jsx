@@ -20,7 +20,7 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   const onLogin = () => {
     const userId = historyState.id;

@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import Style from "./file_btn.module.css";
 
-const ImgFileBtn = ({ uploadService, id, fileName, onFileChange }) => {
+const ImgFileBtn = memo(({ uploadService, id, fileName, onFileChange }) => {
   const inputRef = useRef();
   const [loding, setLoading] = useState(false);
 
@@ -45,6 +45,6 @@ const ImgFileBtn = ({ uploadService, id, fileName, onFileChange }) => {
       {loding && <div className={Style.loding}></div>}
     </td>
   );
-};
+});
 
 export default ImgFileBtn;

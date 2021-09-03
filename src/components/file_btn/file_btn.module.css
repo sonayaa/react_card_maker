@@ -1,9 +1,7 @@
 @value makerLightGrey, makerLightPink, makerWhite, makerGreen, makerPink from '../../common/colors.css';
 
 .file_default,
-.file_exist,
-.delete_btn,
-.add_btn {
+.file_exist {
     display: inline-block;
     width: 100%;
     border: none;
@@ -20,15 +18,6 @@
 
 .file_exist {
     background: makerLightPink;
-}
-
-.delete_btn {
-    color: makerWhite;
-    background: makerGreen;
-}
-
-.add_btn {
-    background: makerLightGrey;
 }
 
 .fileIpt {

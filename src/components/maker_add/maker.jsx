@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import Style from "./maker.module.css";
 
-const MakerAdd = ({ FileBtn, addOrUpdateCard }) => {
+const MakerAdd = memo(({ FileBtn, addOrUpdateCard }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -9,6 +9,14 @@ const MakerAdd = ({ FileBtn, addOrUpdateCard }) => {
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
+  
+  const onFileChange = (file) => {
+    setFile({
+      fileName: file.name,
+      fileURL: file.url,
+    });
+  };
 
   const onClickAdd = (event) => {
     event.preventDefault();
@@ -26,14 +34,6 @@ const MakerAdd = ({ FileBtn, addOrUpdateCard }) => {
     formRef.current.reset();
     setFile({ fileName: null, fileURL: null });
     addOrUpdateCard(card);
-  };
-
-  const [file, setFile] = useState({ fileName: null, fileURL: null });
-  const onFileChange = (file) => {
-    setFile({
-      fileName: file.name,
-      fileURL: file.url,
-    });
   };
 
   return (
@@ -84,6 +84,6 @@ const MakerAdd = ({ FileBtn, addOrUpdateCard }) => {
       </table>
     </form>
   );
-};
+});
 
 export default MakerAdd;

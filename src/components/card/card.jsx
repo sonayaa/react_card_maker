@@ -1,12 +1,14 @@
-import React from "react";
+import React, { memo } from "react";
 import Style from "./card.module.css";
 
-const Card = ({ card }) => {
+const DEFAULT_IMAGE = './favicon.ico';
+
+const Card = memo(({ card }) => {
   const { name, company, theme, title, email, message, fileURL } = card;
   return (
     <li className={`${Style.preview} ${getStyles(theme)}`}>
       <div className={Style.img_area}>
-        <img src={fileURL || "./favicon.ico"} alt="" />
+        <img src={fileURL || DEFAULT_IMAGE} alt="" />
       </div>
       <div className={Style.txt_area}>
         <p className={Style.name}>{name}</p>
@@ -17,7 +19,7 @@ const Card = ({ card }) => {
       </div>
     </li>
   );
-};
+});
 
 function getStyles(theme) {
   switch (theme) {
