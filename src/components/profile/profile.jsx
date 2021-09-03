@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Card from "../card/card";
 import Maker from "../maker/maker";
 import Header from "../layout/header";
 import Footer from "../layout/footer";
 import Style from "./profile.module.css";
-import { useHistory } from "react-router-dom";
 import MakerAdd from "../maker_add/maker";
 
 const Profile = ({ FileBtn, authService, cardRepository }) => {
@@ -12,20 +12,30 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
   const [userId, setUserId] = useState(historyState && historyState.id);
   const [cards, setCards] = useState({});
 
+  const history = useHistory();
+  const onLogout = useCallback(() => { //useCallback
+    authService.onLogout();
+  }, [authService]);
+
   useEffect(() => {
-    if(!userId) {
+    if (!userId) {
       return;
     }
-    const stopSync = cardRepository.syncCards(userId, cards => {
+    const stopSync = cardRepository.syncCards(userId, (cards) => {
       setCards(cards);
     });
     return () => stopSync();
   }, [userId, cardRepository]);
 
-  const onLogin = () => {
-    const userId = historyState.id;
-    return userId;
-  };
+  useEffect(() => {
+    authService.onAuthChange((user) => { // 2.이부분이 이해가 안갔었음! 다시 확인하자.
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        history.push("/");
+      }
+    });
+  }, [authService, userId, history]);
 
   // addCard 함수를 아래 update 함수와 같이 쓸수 있음
   // const addCard = (addCard) => {
@@ -60,7 +70,7 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
 
   return (
     <>
-      <Header onLogin={onLogin} authService={authService} />
+      <Header onLogout={onLogout} authService={authService} />
       <section className={Style.profile}>
         <div className={Style.left}>
           <h2>Card Maker</h2>
@@ -73,10 +83,7 @@ const Profile = ({ FileBtn, authService, cardRepository }) => {
               deleteCard={deleteCard}
             />
           ))}
-          <MakerAdd
-            FileBtn={FileBtn}
-            addOrUpdateCard={addOrUpdateCard}
-          />
+          <MakerAdd FileBtn={FileBtn} addOrUpdateCard={addOrUpdateCard} />
         </div>
         <div className={Style.right}>
           <h2>Card Preview</h2>
