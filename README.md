@@ -1,9 +1,10 @@
-# Card Maker with React
+# Business Card Maker
+Pages : https://sonayaa-card-maker.netlify.app/
 
 ## 1. 프로젝트 개요
-1. firebase의 Auth를 이용한 로그인 기능 구현
-2. firebase의 Realtime Database를 이용한 데이터 저장
-3. cloudinary를 이용한 사진 업로드 기능
+1. Firebase의 Auth를 이용한 로그인 기능 구현
+2. Firebase의 Realtime Database를 이용한 데이터 저장
+3. Cloudinary를 이용한 사진 업로드 기능
 4. 프로필 카드 등록/수정/삭제
 5. React-Router를 사용한 화면전환
 
@@ -12,9 +13,10 @@
 - ES6
 - PostCSS
 - React-Router : https://reactrouter.com/
-- firebase : https://firebase.google.com/docs/auth?authuser=0
-- cloudinary : https://cloudinary.com/
-- VSCode, iTerm2, Postman, Github...
+- Firebase : https://firebase.google.com/docs/auth?authuser=0
+- Cloudinary : https://cloudinary.com/
+- Netlify : https://docs.netlify.com/cli/get-started/
+- VSCode, iTerm2, Postman...
 
 ## 3. Preview
 - 화면 미리보기
